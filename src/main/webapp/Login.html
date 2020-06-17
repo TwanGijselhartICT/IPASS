@@ -5,7 +5,7 @@
     <link rel="icon" href="Afbeeldingen/logo.jpeg">
     <meta charset="UTF-8">
     <title>Damsteeg Productions</title>
-    <link rel="stylesheet" href="LoginStyle.css">
+    <link rel="stylesheet" href="Styles/LoginStyle.css">
 </head>
 <header>
     <div class="container">
@@ -33,48 +33,47 @@
 
 
 <div class="homeText">
+
     <h2>Login</h2>
-    <p>login pagina.</p>
+    <form id ="loginform">
+        <input type="text" name="username" placeholder="Gebruikersnaam" />
+        <input type="password" name="password" placeholder="Wachtwoord"/>
+        <input type="button" value="login" id="login" />
+    </form>
+    <p></p>
+    <p></p>
+
+    <script type="text/javascript">
+
+        function login(event) {
+            var formData = new FormData(document.querySelector("#loginform"));
+            var encData = new URLSearchParams(formData.entries());
+
+            fetch("restservices/authentication", {method: 'POST', body: encData})
+                .then(function (response) {
+                    if(response.ok) {
+                        console.log("inloggen gelukt");
+                        location.replace("Home.html")
+                        alert("Succesvol Ingelogd")
+                        return response.json();
+                    }
+                    else throw "Wrong username/password";
+
+                })
+                .then(myJson=> window.sessionStorage.setItem("myJWT", myJson.JWT))
+                .catch(error => console.log(error));
+        }
+        document.querySelector("#login").addEventListener("click", login);
+    </script>
 </div>
 
 
 
-<h2>Login</h2>
-<form id ="loginform">
-    <input type="text" name="username" />
-    <input type="password" name="password" />
-    <input type="button" value="login" id="login" />
-</form>
-<p></p>
-<p></p>
-
-<script type="text/javascript">
-
-    function login(event) {
-        var formData = new FormData(document.querySelector("#loginform"));
-        var encData = new URLSearchParams(formData.entries());
-
-
-        fetch("restservices/authentication", {method: 'POST', body: encData})
-            .then(function (response) {
-                if(response.ok) {
-                    console.log("inloggen gelukt");
-                    location.replace("home.html")
-                    return response.json();
-                }
-                else throw "Wrong username/password";
-
-            })
-            .then(myJson=> window.sessionStorage.setItem("myJWT", myJson.JWT))
-            .catch(error => console.log(error));
-    }
-    document.querySelector("#login").addEventListener("click", login);
-</script>
 
 
 <div class="fContact">Interesse?<br>Neem vrijblijvend contact op.</div>
 <div class="fCtel">Telefoon: +31(0)612345678
-    <div class="fCmail">E-mail: test@gmail.com</div>
+    <div class="fCmail">E-mail: damsteegwebsite@gmail.com</div>
     <div class="fCinfo"><li><a href="#contact">Meer informatie</a></li>.</div></div>
 
 

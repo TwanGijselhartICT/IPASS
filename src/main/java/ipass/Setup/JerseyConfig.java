@@ -9,9 +9,9 @@ import javax.ws.rs.ApplicationPath;
 @ApplicationPath("restservices")
 public class JerseyConfig extends ResourceConfig {
     public JerseyConfig() {
-        packages("ipass.setup.webservices, ipass.setup.security, ipass.setup.model");
+        packages("ipass.webservices, ipass.security, ipass.model");
         register(RolesAllowedDynamicFeature.class);
-        System.out.println("restservices - JerseyConfig.java");
+
 
 
         //@TODO koppel hier met je web-resource packages

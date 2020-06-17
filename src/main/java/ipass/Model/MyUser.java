@@ -17,7 +17,6 @@ public class MyUser implements Principal {
         plainpassword = pwd;
         role = "user";
         if (!allMyUsers.contains(this)) allMyUsers.add(this);
-        System.out.println(username + " is toegevoegd");
     }
 
 

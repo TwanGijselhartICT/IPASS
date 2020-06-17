@@ -16,6 +16,7 @@ import java.util.AbstractMap.SimpleEntry;
 
 @Path("/authentication")
 public class AuthenticationResource {
+
 //    AquariumManager manager = AquariumManager.getManager();
 
 
