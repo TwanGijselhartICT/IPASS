@@ -95,8 +95,28 @@ body {
     font-family: "Helvetica Neue", Arial, sans-serif;
 
 }
+.productPage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 100px;
+}
+.productPage img{
+    /*position: relative;*/
+    width: 50%;
+    margin-left: 15%;
+    /*height: auto;*/
+    /*margin-bottom: 20px;*/
+    /*left: 25%;*/
+    float: left;
+}
 
 
+.productPage p{
+    /*margin-left: 15px;*/
+    display: block;
+    margin: 2px 0 0 0;
+}
 /**
  * Footer Styles
  */
