@@ -13,21 +13,18 @@ public class SendEmailTLS {
 
     public void setMailSubject(String input){
         mailsubject = input;
-        System.out.println("setMailSubject: "+ mailsubject);
     }
 
     public String getMailSubject(){
-        System.out.println("getMailSubject: "+ mailsubject);
         return mailsubject;
     }
 
     public void setMailText(String input){
         mailtext= input;
-        System.out.println("setMailText: "+ mailtext);
+
     }
 
     public String getMailText(){
-        System.out.println("getMailText: "+ mailtext);
         return mailtext;
     }
 
@@ -63,7 +60,7 @@ public class SendEmailTLS {
 
             Transport.send(message);
 
-            System.out.println("Done");
+            System.out.println("Email verzonden: " +subject);
 
         } catch (MessagingException e) {
             e.printStackTrace();

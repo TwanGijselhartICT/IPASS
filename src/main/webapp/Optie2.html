@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+    <link rel="icon" href="Afbeeldingen/logo.jpeg">
+    <meta charset="UTF-8">
+    <title>Damsteeg Productions</title>
+    <link rel="stylesheet" href="Styles/Optie2Style.css">
+</head>
+<header>
+    <div class="container">
+        <a href="Home.html">
+            <img class="logoT" src="Afbeeldingen/DPtext.png" alt="Damsteeg Productions">
+        </a>
+        <nav>
+            <ul class="nav">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Verhuur.html">Verhuur</a></li>
+                <li><a href="Portfolio.html">Portfolio</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="#Over ons">Over ons</a></li>
+            </ul>
+        </nav>
+    </div>
+
+</header>
+<body>
+<div class="wrapper">
+    <!--    <img class="logo" src="../Afbeeldingen/logo.jpeg" alt="logo Damsteeg Productions">-->
+    <img class="banner" src="Afbeeldingen/banner2.jpg" alt="defqon">
+</div>
+
+
+
+<div class="homeText">
+    <h2>Complete set optie 2</h2>
+    <p>Vanaf: €198,- Incl. BTW</p>
+</div>
+<div class="productPage">
+    <div class="img">
+        <img src="AfbeeldingenVerhuur/optie2.jpg" alt="Complete set optie 2">
+
+        <!--        <form id="gform" method="POST" class="pure-form pure-form-stacked"-->
+        <!--              action="https://script.google.com/macros/s/AKfycbyRfeDPdG1-L1tc4jmi2uv-ydBmCUonHgRVD2Ogmw/exec">-->
+        <form id ="POSTContactForm" onsubmit="return validateForm()" action="Home.html">
+
+            <label for="quantity">Aantal:</label>
+            <br>
+            <input type="number" id="quantity" name="quantity" min="1" max="5" required>
+            <input type="hidden" id="optie" name="optie" value="Complete set optie 2">
+            <br>
+            <br>
+
+            <label for="name">Voornaam en achternaam: </label>
+            <br>
+            <input id="name" name="name" size="40" required/>
+
+            <br>
+            <br>
+
+
+            <label for="message">Bericht: </label>
+            <br>
+            <textarea id="message" name="message" rows="10" cols="50" required></textarea>
+
+            <br>
+            <br>
+
+            <label for="email">Email Adres:</label>
+            <br>
+            <input id="email" name="email" type="email" value="" required size="40"/>
+
+
+            <input type="submit" id="postJackson" value="Vraag offerte aan"/>
+            <!--            <button class="button-success pure-button button-xlarge">-->
+            <!--                <i class="fa fa-paper-plane"></i>&nbsp;Vraag offerte aan-->
+            <!--            </button>-->
+        </form>
+
+    </div>
+
+
+
+</div>
+
+
+<div class="fContact">Interesse?<br>Neem vrijblijvend contact op.</div>
+<div class="fCtel">Telefoon: +31(0)612345678
+    <div class="fCmail">E-mail: damsteegwebsite@gmail.com</div>
+    <div class="fCinfo"><li><a href="#contact">Meer informatie</a></li></div></div>
+
+<script type="text/javascript">
+    document.querySelector("#postJackson").addEventListener("click", function(){
+        var naam = document.querySelector("#name").value;
+        var formData = new FormData(document.querySelector("#POSTContactForm"))
+        var encData = new URLSearchParams(formData.entries());
+        fetch("restservices/offerte/MailText", {method: 'POST', body: encData})
+            .then(response => response.json())
+            .then(function (myJson) {
+                console.log(myJson);
+
+            })
+    });
+
+</script>
+</body>
+</html>

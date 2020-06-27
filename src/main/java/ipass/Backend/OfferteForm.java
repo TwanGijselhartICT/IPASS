@@ -19,7 +19,7 @@ public class OfferteForm {
     @Produces(MediaType.APPLICATION_JSON)
     public Response setMailText(@FormParam("optie") String optie,@FormParam("quantity") int aantal, @FormParam("name") String nm, @FormParam("message") String message, @FormParam("email") String email
     ){
-        if (aantal != 0 && !nm.equals("") && !message.equals("") && !email.equals("")) {
+        if (aantal > 0 && aantal < 6 && !nm.equals("") && !message.equals("") && !email.equals("")) {
             SendEmailTLS manager = new SendEmailTLS();
             JsonObjectBuilder job = Json.createObjectBuilder();
 //        SendEmailTLS setmail = new setMailText(nm, len, breed, hoogte, bodem, water,null,null,null,null,null,null);
