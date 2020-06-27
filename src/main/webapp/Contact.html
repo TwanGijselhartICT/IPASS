@@ -6,6 +6,18 @@
     <meta charset="UTF-8">
     <title>Damsteeg Productions</title>
     <link rel="stylesheet" href="Styles/ContactStyle.css">
+    <script>
+        function validateForm() {
+            var a = document.forms["POSTContactForm"]["name"].value;
+            var b = document.forms["POSTContactForm"]["message"].value;
+            var c = document.forms["POSTContactForm"]["email"].value;
+            if (a === "" && b === "" && c === "") {
+                alert("Name must be filled out");
+                return false;
+            }
+
+        }
+    </script>
 </head>
 <header>
     <div class="container">
@@ -44,7 +56,7 @@
 
 
 <div class = "formText">
-    <form id ="POSTContactForm">
+    <form id ="POSTContactForm" onsubmit="return validateForm()" action="Home.html">
 <!--<form id="gform" method="POST" class="pure-form pure-form-stacked"-->
 <!--      action="https://script.google.com/macros/s/AKfycbyRfeDPdG1-L1tc4jmi2uv-ydBmCUonHgRVD2Ogmw/exec">-->
 
@@ -53,7 +65,7 @@
 
     <label for="name">Voornaam en achternaam: </label>
     <br>
-    <input id="name" name="name" size="40"/>
+    <input id="name" name="name" size="40" required/>
 
     <br>
     <br>
@@ -61,7 +73,7 @@
 
     <label for="message">Bericht: </label>
     <br>
-    <textarea id="message" name="message" rows="10" cols="50"></textarea>
+    <textarea id="message" name="message" rows="10" cols="50" required></textarea>
 
     <br>
     <br>
@@ -70,7 +82,7 @@
     <br>
     <input id="email" name="email" type="email" value="" required size="40"/>
 
-    <input type="button" id="postJackson" value="Voeg toe!"/>
+    <input type="submit" id="postJackson" value="Voeg toe!"/>
 
 <!--    <button class="button-success pure-button button-xlarge">-->
 <!--        <i class="fa fa-paper-plane"></i>&nbsp;Send-->
@@ -99,11 +111,11 @@
         var naam = document.querySelector("#name").value;
         var formData = new FormData(document.querySelector("#POSTContactForm"))
         var encData = new URLSearchParams(formData.entries());
-
         fetch("restservices/add/MailText", {method: 'POST', body: encData})
             .then(response => response.json())
             .then(function (myJson) {
                 console.log(myJson);
+
             })
     });
 

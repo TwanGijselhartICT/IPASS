@@ -40,17 +40,20 @@
     <div class="img">
         <img src="AfbeeldingenVerhuur/optie1.jpg" alt="Complete set optie 1">
 
-        <form id="gform" method="POST" class="pure-form pure-form-stacked"
-              action="https://script.google.com/macros/s/AKfycbyRfeDPdG1-L1tc4jmi2uv-ydBmCUonHgRVD2Ogmw/exec">
+<!--        <form id="gform" method="POST" class="pure-form pure-form-stacked"-->
+<!--              action="https://script.google.com/macros/s/AKfycbyRfeDPdG1-L1tc4jmi2uv-ydBmCUonHgRVD2Ogmw/exec">-->
+        <form id ="POSTContactForm" onsubmit="return validateForm()" action="Home.html">
+
             <label for="quantity">Aantal:</label>
             <br>
-            <input type="number" id="quantity" name="quantity" min="1" max="5">
+            <input type="number" id="quantity" name="quantity" min="1" max="5" required>
+            <input type="hidden" id="optie" name="optie" value="Complete set optie 1">
             <br>
             <br>
 
             <label for="name">Voornaam en achternaam: </label>
             <br>
-            <input id="name" name="name" size="40"/>
+            <input id="name" name="name" size="40" required/>
 
             <br>
             <br>
@@ -58,7 +61,7 @@
 
             <label for="message">Bericht: </label>
             <br>
-            <textarea id="message" name="message" rows="10" cols="50"></textarea>
+            <textarea id="message" name="message" rows="10" cols="50" required></textarea>
 
             <br>
             <br>
@@ -68,10 +71,10 @@
             <input id="email" name="email" type="email" value="" required size="40"/>
 
 
-
-            <button class="button-success pure-button button-xlarge">
-                <i class="fa fa-paper-plane"></i>&nbsp;Vraag offerte aan
-            </button>
+            <input type="submit" id="postJackson" value="Vraag offerte aan"/>
+<!--            <button class="button-success pure-button button-xlarge">-->
+<!--                <i class="fa fa-paper-plane"></i>&nbsp;Vraag offerte aan-->
+<!--            </button>-->
         </form>
 
     </div>
@@ -86,6 +89,19 @@
     <div class="fCmail">E-mail: damsteegwebsite@gmail.com</div>
     <div class="fCinfo"><li><a href="#contact">Meer informatie</a></li></div></div>
 
+<script type="text/javascript">
+    document.querySelector("#postJackson").addEventListener("click", function(){
+        var naam = document.querySelector("#name").value;
+        var formData = new FormData(document.querySelector("#POSTContactForm"))
+        var encData = new URLSearchParams(formData.entries());
+        fetch("restservices/offerte/MailText", {method: 'POST', body: encData})
+            .then(response => response.json())
+            .then(function (myJson) {
+                console.log(myJson);
 
+            })
+    });
+
+</script>
 </body>
 </html>

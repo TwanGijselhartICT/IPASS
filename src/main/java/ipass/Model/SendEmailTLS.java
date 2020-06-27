@@ -59,8 +59,7 @@ public class SendEmailTLS {
                     InternetAddress.parse("damsteegwebsite@gmail.com")
             );
             message.setSubject(subject);
-            message.setText(text
-                    + "\n\n Please do not spam my email!");
+            message.setText(subject + text);
 
             Transport.send(message);
 

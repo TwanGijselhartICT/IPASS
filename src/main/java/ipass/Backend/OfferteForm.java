@@ -12,21 +12,21 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.AbstractMap;
 
-@Path("/add")
-public class ContactForm {
+@Path("/offerte")
+public class OfferteForm {
     @POST
     @Path("MailText")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response setMailText(@FormParam("name") String nm, @FormParam("message") String message, @FormParam("email") String email
-                                   ){
-        if (!nm.equals("") && !message.equals("") && !email.equals("")) {
+    public Response setMailText(@FormParam("optie") String optie,@FormParam("quantity") int aantal, @FormParam("name") String nm, @FormParam("message") String message, @FormParam("email") String email
+    ){
+        if (aantal != 0 && !nm.equals("") && !message.equals("") && !email.equals("")) {
             SendEmailTLS manager = new SendEmailTLS();
             JsonObjectBuilder job = Json.createObjectBuilder();
 //        SendEmailTLS setmail = new setMailText(nm, len, breed, hoogte, bodem, water,null,null,null,null,null,null);
-            String mailText = "Naam: " + nm + "\n\nBericht: " + message + "\n\nEmail: " + email;
-            String mailSubject = "Contact Formulier\n\n";
+            String mailText = "Naam: " + nm + "\n\nOptie: " + optie +"\n\nAantal: " + aantal +"\n\nBericht: " + message + "\n\nEmail: " + email;
+            String mailSubject = "Offerte aanvraag Damsteeg Productions\n\n";
             manager.setMailText(mailText);
-            manager.setMailSubject("Contact Formulier");
+            manager.setMailSubject("Offerte aanvraag Damsteeg Productions");
             SendEmailTLS.runEmail(mailSubject, mailText);
             return Response.ok(manager).build();
         }else {
