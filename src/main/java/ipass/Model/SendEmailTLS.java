@@ -6,9 +6,33 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class SendEmailTLS {
+    private String installatienaam;
+    private String mailsubject;
+    private String mailtext;
 
-    public static void main(String[] args) {
 
+    public void setMailSubject(String input){
+        mailsubject = input;
+        System.out.println("setMailSubject: "+ mailsubject);
+    }
+
+    public String getMailSubject(){
+        System.out.println("getMailSubject: "+ mailsubject);
+        return mailsubject;
+    }
+
+    public void setMailText(String input){
+        mailtext= input;
+        System.out.println("setMailText: "+ mailtext);
+    }
+
+    public String getMailText(){
+        System.out.println("getMailText: "+ mailtext);
+        return mailtext;
+    }
+
+    public static void runEmail(String subject, String text) {
+        SendEmailTLS manager = new SendEmailTLS();
         final String username = "damsteegwebsite@gmail.com";
         final String password = "damsteegproductions";
 
@@ -34,8 +58,8 @@ public class SendEmailTLS {
                     Message.RecipientType.TO,
                     InternetAddress.parse("damsteegwebsite@gmail.com")
             );
-            message.setSubject("Offerte aanvraag Damsteeg Productions");
-            message.setText("Offerte aanvraag Damsteeg Productions"
+            message.setSubject(subject);
+            message.setText(text
                     + "\n\n Please do not spam my email!");
 
             Transport.send(message);

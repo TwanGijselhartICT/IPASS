@@ -44,8 +44,9 @@
 
 
 <div class = "formText">
-<form id="gform" method="POST" class="pure-form pure-form-stacked"
-      action="https://script.google.com/macros/s/AKfycbyRfeDPdG1-L1tc4jmi2uv-ydBmCUonHgRVD2Ogmw/exec">
+    <form id ="POSTContactForm">
+<!--<form id="gform" method="POST" class="pure-form pure-form-stacked"-->
+<!--      action="https://script.google.com/macros/s/AKfycbyRfeDPdG1-L1tc4jmi2uv-ydBmCUonHgRVD2Ogmw/exec">-->
 
 
 
@@ -69,11 +70,11 @@
     <br>
     <input id="email" name="email" type="email" value="" required size="40"/>
 
+    <input type="button" id="postJackson" value="Voeg toe!"/>
 
-
-    <button class="button-success pure-button button-xlarge">
-        <i class="fa fa-paper-plane"></i>&nbsp;Send
-    </button>
+<!--    <button class="button-success pure-button button-xlarge">-->
+<!--        <i class="fa fa-paper-plane"></i>&nbsp;Send-->
+<!--    </button>-->
 
 
 </form>
@@ -85,14 +86,6 @@
 </div>
 
 
-
-
-<!--<script data-cfasync="false" type="text/javascript"-->
-<!--        src="/ipass/Mail.js">-->
-
-<!--</script>-->
-
-
 </div>
 <footer>
 <div class="fContact">Interesse?<br>Neem vrijblijvend contact op.</div>
@@ -101,5 +94,19 @@
     <div class="fCinfo"><li><a href="#contact">Meer informatie</a></li>.</div></div>
 </footer>
 <!--<script data-cfasync="false" type="text/javascript" src="form-submission-handler.js"></script>-->
+<script type="text/javascript">
+    document.querySelector("#postJackson").addEventListener("click", function(){
+        var naam = document.querySelector("#name").value;
+        var formData = new FormData(document.querySelector("#POSTContactForm"))
+        var encData = new URLSearchParams(formData.entries());
+
+        fetch("restservices/add/MailText", {method: 'POST', body: encData})
+            .then(response => response.json())
+            .then(function (myJson) {
+                console.log(myJson);
+            })
+    });
+
+</script>
 </body>
 </html>
