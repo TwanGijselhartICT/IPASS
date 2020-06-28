@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebListener;
 
 @WebListener
 public class MyServletContextListener implements ServletContextListener {
-
+    @Override
     public void contextInitialized(ServletContextEvent sce) {
         System.out.println("Applicatie is aan het opstarten!");
 
@@ -19,9 +19,10 @@ public class MyServletContextListener implements ServletContextListener {
 
 
 
+
     }
 
-
+    @Override
     public void contextDestroyed(ServletContextEvent sce) {
         System.out.println("Applicatie gaat afsluiten");
     }

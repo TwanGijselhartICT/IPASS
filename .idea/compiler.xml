@@ -11,4 +11,9 @@
       </profile>
     </annotationProcessing>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Iteratie 4" options="-Xlint:unchecked" />
+    </option>
+  </component>
 </project>
