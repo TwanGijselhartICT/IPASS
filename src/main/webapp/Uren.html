@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+    <link rel="icon" href="Afbeeldingen/Logo.jpeg">
+    <meta charset="UTF-8">
+    <title>Damsteeg Productions</title>
+    <link rel="stylesheet" href="Styles/UrenStyle.css">
+    <script>
+        function validateForm() {
+            var a = document.forms["POSTContactForm"]["name"].value;
+            var b = document.forms["POSTContactForm"]["message"].value;
+            var c = document.forms["POSTContactForm"]["uren"].value;
+            if (a === "" && b === "" && c === "") {
+                alert("Name must be filled out");
+                return false;
+            }
+
+        }
+    </script>
+</head>
+<header>
+    <div class="container">
+        <a href="Home.html">
+            <img class="logoT" src="Afbeeldingen/DPtext.png" alt="Damsteeg Productions">
+        </a>
+        <nav>
+            <ul class="nav">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Verhuur.html">Verhuur</a></li>
+                <li><a href="Portfolio.html">Portfolio</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="#Over ons">Over ons</a></li>
+            </ul>
+        </nav>
+    </div>
+
+</header>
+<body>
+<div class="wrapper">
+    <!--    <img class="logo" src="../Afbeeldingen/logo.jpeg" alt="logo Damsteeg Productions">-->
+    <img class="banner" src="Afbeeldingen/banner2.jpg" alt="defqon">
+</div>
+
+
+
+<div class="homeText">
+    <h2 class="content-head is-center">Uren registratie</h2>
+    <aside>
+        <p>
+            Voor hier uw urenregistratie per werkgever in.
+        </p>
+    </aside>
+
+
+
+    <div class = "formText">
+        <form id ="POSTContactForm" onsubmit="return validateForm()" action="Home.html">
+            <!--<form id="gform" method="POST" class="pure-form pure-form-stacked"-->
+            <!--      action="https://script.google.com/macros/s/AKfycbyRfeDPdG1-L1tc4jmi2uv-ydBmCUonHgRVD2Ogmw/exec">-->
+
+
+
+
+
+            <label for="werkGever">Werkgever: </label><br>
+            <select id="werkGever" name="werkGever">
+                <option value="M&S Productions">M&S Productions</option>
+                <option value="Defcon1">Defcon1</option>
+                <option value="Into the woods">Into the woods</option>
+                <option value="Amersfoort">Amersfoort</option>
+            </select>
+            <br>
+            <br>
+            <label for="date">Gewerkte datum:</label>
+            <br>
+            <input type="date" id="date" name="date">
+            <br>
+            <br>
+            <label for="uren">Aantal gewerkte uren:</label>
+            <br>
+            <input type="number" id="uren" name="uren" min="1" required>
+            <br>
+            <br>
+            <label for="message">Bericht: </label>
+            <br>
+            <textarea id="message" name="message" rows="10" cols="50" required></textarea>
+
+            <br>
+            <br>
+
+
+
+            <input type="submit" id="postJackson" value="Voeg toe!"/>
+
+            <!--    <button class="button-success pure-button button-xlarge">-->
+            <!--        <i class="fa fa-paper-plane"></i>&nbsp;Send-->
+            <!--    </button>-->
+
+
+        </form>
+        <div style="display:none" class="thankyou_message">
+            <!-- You can customize the thankyou message by editing the code below -->
+            <h2><em>Thanks</em> for contacting us! We will get back to you soon!
+            </h2>
+        </div>
+    </div>
+
+
+</div>
+<footer>
+    <div class="fContact">Interesse?<br>Neem vrijblijvend contact op.</div>
+    <div class="fCtel">Telefoon: +31(0)612345678
+        <div class="fCmail">E-mail: damsteegwebsite@gmail.com</div>
+        <div class="fCinfo"><a href="Contact.html">Meer informatie</a></div></div>
+</footer>
+<!--<script data-cfasync="false" type="text/javascript" src="form-submission-handler.js"></script>-->
+<script type="text/javascript">
+    document.querySelector("#postJackson").addEventListener("click", function(){
+        // var naam = document.querySelector("#name").value;
+        var formData = new FormData(document.querySelector("#POSTContactForm"))
+        var encData = new URLSearchParams(formData.entries());
+        fetch("restservices/uren/MailText", {method: 'POST', body: encData})
+            .then(response => response.json())
+            .then(function (myJson) {
+                console.log(myJson);
+
+            })
+    });
+
+</script>
+</body>
+</html>
