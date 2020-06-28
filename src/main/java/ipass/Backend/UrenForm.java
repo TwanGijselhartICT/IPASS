@@ -22,7 +22,6 @@ public class UrenForm {
         if (aantal > 0 && !nm.equals("") && !message.equals("")) {
             SendEmailTLS manager = new SendEmailTLS();
             JsonObjectBuilder job = Json.createObjectBuilder();
-//        SendEmailTLS setmail = new setMailText(nm, len, breed, hoogte, bodem, water,null,null,null,null,null,null);
             String mailText = "Werkgever: " + nm + "\n\nDatum: " + date+ "\n\nAantal gewerkte uren: " + aantal +"\n\nBericht: " + message;
             String mailSubject = "Urenregistratie\n\n";
             manager.setMailText(mailText);
