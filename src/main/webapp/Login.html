@@ -58,8 +58,8 @@
                 .then(function (response) {
                     if(response.ok) {
                         console.log("inloggen gelukt");
-                        // location.replace("Uren.html")
-                        alert("Succesvol Ingelogd")
+                        location.replace("Uren.html")
+                        // alert("Succesvol Ingelogd")
                         return response.json();
                     }
                     else throw "Wrong username/password";
