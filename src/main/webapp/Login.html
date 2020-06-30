@@ -57,8 +57,9 @@
             fetch("restservices/authentication", {method: 'POST', body: encData})
                 .then(function (response) {
                     if(response.ok) {
-                        console.log("inloggen gelukt");
                         location.replace("Uren.html")
+                        console.log("inloggen gelukt");
+
                         // alert("Succesvol Ingelogd")
                         return response.json();
                     }
